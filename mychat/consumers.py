@@ -10,6 +10,7 @@ from channels.generic.websocket import (
     AsyncConsumer,
 )
 from django.contrib.auth.models import AnonymousUser
+from django.utils.timezone import now
 
 from mychat.models import Message
 
@@ -24,6 +25,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         obj, create = Message.objects.get_or_create(
             user=user,
             message=message,
+            create_time=now(),
         )
         print(f'obj:{obj} create:{create}')
         return obj
