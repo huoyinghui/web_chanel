@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+*.pyc
+*.pyo
+*.mo
+*.pid
+db.*
+
+.idea/*
+*/.idea/*
+*/__pycache__/*
