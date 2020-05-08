@@ -2,7 +2,7 @@ from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from django.views.decorators import gzip
 
-from video.video import VideoCamera
+from video.video import cam
 
 
 def hello():
@@ -11,9 +11,6 @@ def hello():
     while True:
         time.sleep(1)
         yield f'Hello,{i}'
-
-
-cam = VideoCamera()
 
 
 def gen():

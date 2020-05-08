@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 import threading
+import time
 
 import cv2
+
+from django.core.cache import cache
 
 
 class VideoCamera(object):
@@ -9,6 +12,7 @@ class VideoCamera(object):
         self.video = cv2.VideoCapture(0)
         (self.grabbed, self.frame) = self.video.read()
         threading.Thread(target=self.update, args=()).start()
+        self.frame_data = None
 
     def __del__(self):
         self.video.release()
@@ -18,11 +22,20 @@ class VideoCamera(object):
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
 
+    def get_frame_from_cache(self):
+        return cache.get('frame')
+
     def update(self):
-        import time
         while True:
             time.sleep(1)
             (self.grabbed, self.frame) = self.video.read()
+            ret, jpeg = cv2.imencode('.jpg', self.frame)
+            data = jpeg.tobytes()
+            now = time.time()
+            cache.set('frame'.format(now), data, timeout=100)
+
+
+cam = VideoCamera()
 
 
 def generate_video():

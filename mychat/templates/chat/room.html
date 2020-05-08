@@ -10,6 +10,11 @@
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
+    <br>
+    <br>
+    <h2>在线视频</h2>
+    <img src="http://localhost:8000/video/feed/" height="300" width="300">
+
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
