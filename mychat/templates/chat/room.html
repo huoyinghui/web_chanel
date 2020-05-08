@@ -13,7 +13,8 @@
     <br>
     <br>
     <h2>在线视频</h2>
-    <img src="http://localhost:8000/video/feed/" height="300" width="300">
+    <img src="{% url 'video_feed' %} " height="300" width="300">
+    <!--<img src="http://localhost:8000/video/feed/" height="300" width="300">-->
 
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
