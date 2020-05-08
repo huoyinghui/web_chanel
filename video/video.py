@@ -36,6 +36,7 @@ class VideoCamera(object):
 
 
 cam = VideoCamera()
+# cam = None
 
 
 def generate_video():
